@@ -434,6 +434,11 @@ déjà encerclé c'est payant sur le site */
 
 /****** Footer ***********/
 
+h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 footer{
     margin-top: 35px;
     padding: 20px;
@@ -609,7 +614,7 @@ footer .footer-column ul li:first-child{
 
     .hebergements{
         order: 2;
-        background: var(--main-white-color)!important;
+        background: var(--main-white-color);
     }
 
     .hebergements-cards .card{
