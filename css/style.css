@@ -1,44 +1,245 @@
 /****** General ***********/
 * {
     font-family: 'Raleway', sans-serif;
+    scroll-behavior: smooth;
+    /* pour la fluidité du scroll vers les ancres */
 }
 
 :root {
-    --main-color: #0065FC;
-    --main-bg-color: #F2F2F2;
-    --filter-bg-color: #DEEBFF;
+    --main-color: rgba(0, 101, 252, 1); /* rouge, vert, bleu, opacité de la couleur */
+    --main-bg-color: #F2F2F2; /* bg de sections hebergements et populaires */
+    --main-black-color: rgba(0, 0, 0, 1); /* couleur font si bg blanc*/
+    --main-white-color: white; /* couleur font si bg bleu, dans "rechercher" */
+    --filter-bg-color: #DEEBFF; /*utilisé pour le bg des filtres au passage souris*/
 }
 
 .fa-solid {
-    color: var(--main-color);
+    color: var(--main-color); /* fa- propre à font awesome, rendra tous les fa-solid de ses icones 
+    du code en bleu, la main color de root */
+
 }
 
 body {
-    display: flex;
+    margin: 0px;   
     justify-content: center;
 }
 
-.main-container {
-    width: 100%;
-    max-width: 1440px;
-    padding: 0 50px;
-    box-sizing: border-box;
+main {
+    margin-top: 50px;
+    flex-direction: column; /* pour que les éléments soient les uns en dessous des autres */
+    gap: 35px; /* espace entre les éléments lignes et colonnes des elements flex */
 }
 
-a {
-    color: inherit;
+
+li{
+    list-style: none;
+}
+
+a{
     text-decoration: none;
+    color: var(--main-black-color);
+}
+
+
+
+
+
+
+.flexbox{
+    display: flex;
+}
+/* pour éviter de répéter le display flex partout */
+
+
+
+
+/***************** Header ***************/
+
+header{
+    justify-content:space-between
+}
+
+header img{
+    align-self: center; /* pour centrer le logo dans la box */
+    margin-top:30px;
+}
+
+
+.nav-menu{
+    /* box nav avec hebergements et activités en haut à gauche */
+    justify-content: space-evenly; /* même espace entre les éléments et les bords*/
+    align-content: flex-end;
+    width: 30%; /* largeur de la box */
+    top:0; /* pour que la box soit en haut de la page */
+    font-weight: 500;
+}
+
+.nav-menu a {
+    /* trait bleu au passage de la souris sur les boxs de nav-menu hebergements et activités */
+    border-top: 2px solid transparent; /* trait transparent quand souris pas dessus */
+    padding-top:15px;
+}
+
+.nav-menu a:hover{
+    color:#0065FC;
+    border-color: #0065FC; /* trait bleu quand souris dessus, le hover hérite du border top de a 
+    et change de transparent à bleu */
+}
+
+/****** filters ***********/
+
+.search-and-filters{
+    flex-direction: column; /*pour que le bloc aille en dessous du slogan */
+    align-items: flex-start;
+    gap: 35px
+}
+
+.fa-magnifying-glass {   
+    color: white;   
+}
+ /*  couleur de la loupe qui doit être blanche alors qu'on
+ a programmé toutes les icones en bleu */
+
+.fa-location-dot {
+    color: var(--main-black-color);
+/* couleur de l'icone de loc qui doit être noire alors qu'on
+ a programmé toutes les icones en bleu */
+}
+
+.search-and-filters-title p{
+    margin-top: 8px;
+}
+
+.search-form{
+    height: 49px;
+    border-radius: 15px;
+}
+.search-form .icon{
+    align-items: center;
+    justify-content: center;
+    min-width: 50px; /* peut pas être plus petit que 50px quel que soit l'écran */
+    background: var(--main-bg-color); /* même couleur que le bg de la section hebergements */
+    /* à refacto ?*/
+    border-radius: 15px 0px 0px 15px;
+    border-top: 1px solid rgba(242, 242, 242, 1);
+}
+
+.search-form input{
+    height: 100%; /* de la hauteur de la box */
+    max-width: 200px; /* espace du nom de ville qui peut pas être plus grand quel que soit l'écran */
+     /* à refacto ? */
+    padding: 14px 0px 14px 24px;
+    border: 1px solid rgba(242, 242, 242, 1);
+
+    border-left: none;
+    border-right: none;
+    color: black;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* .search-form input:focus{
+    outline: none;
+} A mettre si on ne respecte pas l'accessibilité,
+c'est la cadre bleu par défaut des navigateurs au clic dans un input */
+
+/* config pour pour la box bleue recherche avec
+"recherche" en mode desk*/
+
+.search-form .search-desktop{
+    align-items: center;
+    gap: 10px;
+    height: 49px;
+    padding: 19px 14px;
+    border-radius: 0px 15px 15px 0px;
+    border: 1px solid var(--blue, #0065FC);
+    background: var(--blue, #0065FC);
+    color: var(--main-white-color);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+}
+/* config pour pour la box bleue recherche 
+en mode mobile qui passe en loupe*/
+
+.search-form .search-mobile{
+    display: none;
+    align-items: center;
+    gap: 10px;
+    height: 49px;
+    padding: 19px 14px;
+    border-radius: 15px;
+    border: 1px solid var(--blue, #0065FC);
+    background: var(--blue, #0065FC);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: var(--main-white-color);
+}
+
+.filters{
+    align-items: center;
+    gap: 15px;
+}
+
+#filters-title{
+    font-size: 18px;
+}
+
+.filters .filter-buttons{
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filters button{
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 50px;
+    padding: 4px 19px;
+    border-radius: 25px;
+    border: 2px solid rgba(217, 217, 217, 1);
+    background: none;
+    font-weight: 700;
+}
+
+.filters button:hover{
+    background: rgba(222, 235, 255, 1);
+}
+
+.info{
+    align-items: center;
+    gap: 10px;
+}
+.fa-info{
+    width:20px;
+    height:20px;
+    text-align: center;
+    border-radius: 100%;
+    border:1px solid #d9d9d9;
+    padding:2px;
+} /* pour que l'icone info soit dans un cercle gris 
+déjà encerclé c'est payant sur le site */
+
+
+/****** Main ***********/
+
+.main-container {
+    width: 100%;
+    max-width: 1440px; /* taille max de la box au delà ça reste cette taille*/
+    padding: 0 50px;
+    box-sizing: border-box; /* pour que le padding et width soit pris en compte dans la taille de la box quel que soit le format d'écran */
 }
 
 .section-title {
     margin: 0;
     font-size: 22px;
+    font-weight: 700;
 }
 
 .card {
-    background-color: white;
-    border-radius: 20px;
     padding: 5px;
+    background-color: var(--main-white-color);
+    border-radius: 20px;
     filter: drop-shadow(0px 3px 15px rgba(0, 0, 0, 0.1));
 }
 
@@ -54,26 +255,90 @@ a {
     font-weight: 700;
 }
 
-.neutral-star {
+.empty-star {
     color: var(--main-bg-color)
 }
 
 /****** Hebergements And Populaires ***********/
+
 .hebergements-and-populaires {
-    display: flex;
     justify-content: space-between;
 }
 
 .hebergements-and-populaires section {
+    padding: 30px;
     background-color: var(--main-bg-color);
     border-radius: 20px;
-    padding: 30px;
     box-sizing: border-box;
 }
 
 /****** Hebergements ***********/
+
 .hebergements {
     width: 65%;
+   
+}
+
+.hebergements .title-txt{
+    align-self: flex-start;
+    margin-top: 30px;
+}
+
+.hebergements-cards{
+    flex-flow: row wrap;
+    justify-content: stretch;
+    justify-content: space-between;
+}
+
+.hebergements-cards .card {
+    flex-direction: column;
+    gap: 4px;
+    flex-grow: 1; /*pour que les elements grandissent ensemble */
+    position: relative; /*rend la position flexible au niveau des paddings etc */
+    margin-top: 30px;
+    padding-bottom: 10px;
+    box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.hebergements-cards a{
+    flex-basis: 31%; /* Définit la taille initiale de l'élément à 31% de l'espace total disponible dans le conteneur flex */
+    /* display:flex; */
+    height:240px;
+}
+
+.hebergements-cards img {
+    width: 100%;
+    height: 124px;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.hebergements-cards .card .card-content{
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: 4px 8px 0px 8px;
+}
+
+.hebergements .card .card-content .card-title{
+    margin: 0;
+    padding: 0;
+}
+
+.hebergements .card .card-content .card-subtitle{
+    font-size: 14px;
+    font-weight: 400;
+    margin:5px 0 5px 0;
+}
+
+
+.hebergements .card .card-content .card-subtitle::before{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
 
 /****** Populaires ***********/
@@ -82,7 +347,6 @@ a {
 }
 
 .populaires-title {
-    display: flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -90,6 +354,8 @@ a {
 .populaires-cards .card {
     display: flex;
     margin-top: 33px;
+    box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .populaires-cards img {
@@ -100,12 +366,11 @@ a {
 }
 
 .populaires-cards .card-content {
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
     width: 67%;
     padding-left: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
 }
 
 .populaires-cards .card-title {
@@ -115,20 +380,105 @@ a {
 
 .populaires-cards .card-subtitle {
     margin: 0;
+    font-size: 14px;
+    font-weight: 400;
 }
+
+
 
 .populaires-cards .card-rating {
     margin-bottom: 5px;
+    margin-top: auto;
+}
+
+/****** activities ***********/
+
+.activities{
+    padding: 30px;
+}
+
+.activities .activities-cards{
+    gap: 30px;
+    margin-top: 30px;
+    justify-content: space-evenly;
+}
+
+.activities .activities-cards .activities-card{
+    flex-direction: column;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.10);
+    height:100%;
+}   
+
+.activities-cards a{
+    flex-basis: 25%;
+}
+
+.activities .activities-cards .activities-card img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.activities-txt{
+    margin:0;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 20px 19px 20px 19px;
+    gap:10px;
 }
 
 
+/****** Footer ***********/
+
+footer{
+    margin-top: 35px;
+    padding: 20px;
+    background: #F2F2F2;
+}
 
 
-/* Le code ci-dessous correspond à la version responsive uniquement */
+footer .footer-column ul {
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+footer .footer-column ul li a{
+    font-style: normal;
+    font-weight: 400;
+}
+
+footer .footer-column ul li a:hover{
+    text-decoration: underline;
+}
+/* Est ce qu'il faut underline ^ ? */
+
+footer .footer-column ul li:first-child{
+    font-size: 18px;
+    font-weight: 700;
+}
+
 
 /****** Media queries ***********/
 /* Medium devices (tablets, less/equal than 1024px) */
 @media (max-width: 1024px) {
+
+    .search-and-filters .filters{
+        align-items: flex-start;
+        flex-flow: column;
+    }
+
+    .search-and-filters .filters .filter-buttons button{
+        font-size: 16px;
+        font-weight: 700;
+    }
+
     .hebergements-and-populaires {
         flex-direction: column;
     }
@@ -137,31 +487,171 @@ a {
         width: 100%;
     }
 
+    .hebergements-cards .card{
+        flex-basis: 28.25983%;
+    }
+
     .populaires {
         width: 100%;
         margin-top: 50px;
+       
     }
 
     .populaires-cards {
-        display: flex;
+        display:flex;
         flex-direction: row;
         justify-content: space-between;
+        
     }
 
-    .populaires-cards a {
-        width: 30%;
+    .populaires-cards .card {
+        margin-top:20px;
+    }
+
+    .populaires-cards a{
+        flex-basis: 32%;
     }
 
     .populaires-cards .card-title {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .populaires-cards .card-subtitle {
-        font-size: 13px;
+        font-size: 14px;
+    }
+
+    .activities .activities-cards .activities-card img{
+        height: 200px;
     }
 }
 
 /* Small devices (phones, less than 768px) */
 @media (max-width: 767.98px) {
-    /* ... */
+    /* GLOBAL */
+
+    .main-container{
+        padding: 0;
+    }
+
+    header{
+        flex-direction: column;
+        margin-top:20px;
+        height: auto;
+    }
+
+    header img{
+        margin-top: 10px;
+    }
+
+    .nav-menu{
+        width: 100%;
+        height:30%;
+        align-items: end;
+    }
+    
+    .nav-menu a {
+        text-align: center;
+        width:50%;
+        border-top:none;
+        border-bottom: 2px solid #d9d9d9;
+        padding-top:30px;
+        padding-bottom:10px;
+    }
+    
+    /* filters */
+    .search-and-filters{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .search-and-filters .search-form{
+        width: 100%;
+    }
+
+    .search-and-filters .search-form input{
+        flex-grow: 1;
+        max-width: inherit;
+        min-width: 176px;
+        padding-right: 0px;
+    }
+
+    .search-and-filters .search-form .search-mobile{
+        display: inline-flex;
+    }
+
+    .search-and-filters .search-form .search-desktop{
+        display: none;
+    }
+
+    .search-and-filters .filters, .filter-buttons{
+        width: 100%;
+    }
+
+    .search-and-filters .filters .filter-buttons{
+        gap: 20px 10px;
+    }
+    .search-and-filters .filters .filter-buttons button{
+        flex: 46.98995%;
+        justify-content: flex-start;
+        text-align: left;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    /* hebergement and populaires */
+    .hebergements-and-populaires section{
+        border-radius: inherit;
+        padding: 30px 20px 20px 20px;
+        box-sizing: border-box;
+    }
+
+    /* hebergement */
+
+    .hebergements{
+        order: 2;
+        background: var(--main-white-color)!important;
+    }
+
+    .hebergements-cards .card{
+        flex-basis: 100%;
+    }
+
+    .hebergements-cards a{
+        flex-basis: 100%;
+    }
+
+
+    .populaires{
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .populaires .populaires-cards{
+         flex-direction: column;
+    }
+
+    .populaires .populaires-cards .card{
+        margin-top: 15px;
+        width: inherit;
+    }
+
+
+    /* activities */
+    .activities .activities-cards{
+        flex-direction: column;
+    }
+
+    .activities .activities-cards .activities-card img{
+        height: 141px;
+    }
+
+    footer{
+        padding: 30px;
+    }
+
+    footer .footer-column{
+        flex-direction: column;
+        align-content: flex-start;
+        gap: 50px;
+    }
 }
